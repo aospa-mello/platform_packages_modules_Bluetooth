@@ -32,7 +32,10 @@ cc_library_static {
         "srce",
     ],
     host_supported: true,
-    min_sdk_version: "Tiramisu"
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "Tiramisu",
 }
 
 cc_fuzz {

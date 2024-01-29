@@ -35,7 +35,6 @@ cc_library_static {
         "liblog",
     ],
     apex_available: [
-        "//apex_available:platform",
         "com.android.btservices",
     ],
     min_sdk_version: "Tiramisu",

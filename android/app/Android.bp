@@ -37,6 +37,11 @@ java_library {
     name: "bluetooth.mapsapi",
 
     srcs: ["lib/mapapi/**/*.java"],
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "Tiramisu",
+    sdk_version: "module_current",
 }
 
 java_library {
@@ -44,6 +49,11 @@ java_library {
 
     srcs: [":framework-mms-shared-srcs"],
     libs: ["unsupportedappusage"],
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "Tiramisu",
+    sdk_version: "module_current",
 }
 
 // Bluetooth JNI
@@ -96,6 +106,10 @@ cc_library_shared {
     sanitize: {
         scs: true,
     },
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "Tiramisu",
 }
 
 // Bluetooth APK
@@ -115,14 +129,24 @@ android_app {
     ],
     certificate: ":com.android.bluetooth.certificate",
 
+    jarjar_rules: ":bluetooth-jarjar-rules",
+
+    jni_uses_platform_apis: true,
     jni_libs: ["libbluetooth_jni"],
     libs: [
-        "services.net",
         "app-compat-annotations",
+        "error_prone_annotations",
+        "framework-annotations-lib",
+        "framework-bluetooth-pre-jarjar",
         "framework-configinfrastructure",
+        "framework-connectivity.stubs.module_lib",
+        "framework-mediaprovider",
+        "framework-statsd.stubs.module_lib",
+        "framework-tethering.stubs.module_lib",
+        "unsupportedappusage",
     ],
-    min_sdk_version: "current",
-    platform_apis: true,
+
+    platform_apis: false,
     static_libs: [
         "android.hardware.radio-V1.0-java",
         "android.hardware.radio.sap-V1-java",
@@ -143,8 +167,9 @@ android_app {
         "modules-utils-backgroundthread",
         "modules-utils-bytesmatcher",
         "modules-utils-statemachine",
-        "services.net",
         "modules-utils-synchronous-result-receiver",
+        "net-utils-services-common",
+        "networkstack-client",
         "sap-api-java-static",
     ],
 
@@ -162,7 +187,6 @@ android_app {
         proguard_flags_files: ["proguard.flags"],
     },
     apex_available: [
-        "//apex_available:platform",
         "com.android.btservices",
     ],
     errorprone: {
@@ -171,6 +195,8 @@ android_app {
             "-Xep:AlmostJavadoc:ERROR",
         ],
     },
+    min_sdk_version: "Tiramisu",
+    sdk_version: "module_current",
 }
 
 java_library {
@@ -186,13 +212,12 @@ java_library {
     ],
     min_sdk_version: "Tiramisu",
     sdk_version: "module_current",
-
 }
 
-//platform_compat_config {
-//    name: "bluetoothapk-platform-compat-config",
-//    src: ":bluetooth.change-ids",
-//}
+platform_compat_config {
+    name: "bluetoothapk-platform-compat-config",
+    src: ":bluetooth.change-ids",
+}
 
 genrule {
     name: "statslog-bt-restricted-java-gen",

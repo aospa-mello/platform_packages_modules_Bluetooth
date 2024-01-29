@@ -34,6 +34,10 @@ rust_library {
           ],
       },
   },
+  apex_available: [
+      "//apex_available:platform",
+      "com.android.btservices",
+  ],
   min_sdk_version: "Tiramisu",
 }
 
@@ -76,6 +80,9 @@ rust_ffi_static {
               ]
           },
      },
+    apex_available: [
+        "com.android.btservices",
+    ],
     min_sdk_version: "30",
 }
 
@@ -103,6 +110,10 @@ cc_library_static {
         "-Wno-unused-const-variable",
     ],
     host_supported: true,
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.btservices",
+    ],
     shared_libs: [
         "libchrome",
     ],
@@ -126,6 +137,10 @@ cc_library_static {
         "libchrome",
     ],
     host_supported: true,
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.btservices",
+    ],
     min_sdk_version: "30",
 }
 
@@ -133,6 +148,10 @@ cc_library_headers {
     name: "libbt_keystore_cc_headers",
     local_include_dirs: ["keystore"],
     host_supported: true,
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.btservices",
+    ],
     min_sdk_version: "30",
 }
 
@@ -144,6 +163,10 @@ cc_library_static {
         "libbt_common_ffi",
     ],
     host_supported: true,
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.btservices",
+    ],
     min_sdk_version: "30",
 }
 

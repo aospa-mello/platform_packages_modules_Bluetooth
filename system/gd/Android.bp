@@ -190,6 +190,9 @@ cc_library {
     defaults: [
         "libbluetooth_gd_defaults",
     ],
+    apex_available: [
+        "com.android.btservices",
+    ],
     min_sdk_version: "31",
 }
 
@@ -605,7 +608,6 @@ rust_library {
         "libthiserror",
     ],
     apex_available: [
-        "//apex_available:platform",
         "com.android.btservices",
     ],
     min_sdk_version: "30",

@@ -29,7 +29,6 @@ cc_library {
         "src/audio_hearing_aid_hw_utils.cc",
     ],
     apex_available: [
-        "//apex_available:platform",
         "com.android.btservices",
     ],
     shared_libs: [

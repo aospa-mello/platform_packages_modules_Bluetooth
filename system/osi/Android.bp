@@ -108,6 +108,9 @@ cc_library_static {
         "-DLIB_OSI_INTERNAL",
     ],
     min_sdk_version: "Tiramisu",
+    apex_available: [
+        "com.android.btservices",
+    ],
 }
 
 // libosi unit tests for target and host

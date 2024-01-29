@@ -5,6 +5,8 @@ package {
 java_defaults {
     name: "BluetoothInstrumentationTestsDefaults",
 
+    min_sdk_version: "Tiramisu",
+    target_sdk_version: "current",
     libs: [
         "android.test.base",
         "android.test.mock",
@@ -28,6 +30,7 @@ java_defaults {
         "gson",
         "mockito-target",
         "truth-prebuilt",
+        "framework-bluetooth-pre-jarjar",
     ],
 
     asset_dirs: ["src/com/android/bluetooth/btservice/storage/schemas"],
@@ -35,6 +38,10 @@ java_defaults {
     // Include all test java files.
     srcs: ["src/**/*.java"],
 
+    jacoco: {
+        include_filter: ["android.bluetooth.*"],
+        exclude_filter: [],
+    },
     platform_apis: true,
 
     test_suites: [

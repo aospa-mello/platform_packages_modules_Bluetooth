@@ -17,7 +17,6 @@ sysprop_library {
     min_sdk_version: "Tiramisu",
   },
   apex_available: [
-    "//apex_available:platform",
     "com.android.btservices",
   ],
 }

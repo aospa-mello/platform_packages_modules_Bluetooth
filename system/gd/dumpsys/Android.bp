@@ -142,7 +142,6 @@ cc_library {
         "BluetoothGeneratedDumpsysBundledSchema_cc",
     ],
     apex_available: [
-        "//apex_available:platform",
         "com.android.btservices",
     ],
     min_sdk_version: "30",

@@ -131,7 +131,10 @@ java_library {
         ":srcs_bluetooth_manager_service_proto",
     ],
     sdk_version: "system_server_current",
-    min_sdk_version: "Tiramisu"
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "Tiramisu",
 }
 
 java_library {
@@ -163,20 +166,16 @@ java_library {
         ":srcs_bluetooth_protos",
     ],
     apex_available: [
-        "com.android.bluetooth",
+        "com.android.btservices",
     ],
     min_sdk_version: "33",
     sdk_version: "module_current",
 }
 
-
-
-// TODO(b/244748540) re-enable
-// platform_compat_config
-// {
-//    name: "bluetooth-compat-config",
-//    src: ":service-bluetooth-pre-jarjar",
-// }
+platform_compat_config {
+    name: "bluetooth-compat-config",
+    src: ":service-bluetooth-pre-jarjar",
+}
 
 // (b/269501291) this package moved from android/app/Android.bp
 cc_library {
